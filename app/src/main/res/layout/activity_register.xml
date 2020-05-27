@@ -1,103 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/activity_register"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.regform.RegisterActivity">
 
-tools:context="com.app.regform.RegisterActivity">
-
-<TextView
-    android:text=" User Registration"
-    android:gravity="center"
-    android:textSize="20dp"
-    android:textColor="#000"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/textView" />
-
-<EditText
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textEmailAddress"
-    android:hint="Username"
-    android:textColor="#000"
-    android:ems="10"
-    android:layout_below="@+id/textView"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="3dp"
-    android:id="@+id/editName"
-    android:gravity="center"/>
-
-<EditText
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textEmailAddress"
-    android:hint="Enter Email"
-    android:textColor="#000"
-    android:ems="10"
-    android:layout_below="@+id/editName"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="5dp"
-    android:id="@+id/editEmail"
-    android:gravity="center"/>
-
-
-    <TextView
-        android:text=" Choose passimage"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editEmail"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/editPassword1" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center_horizontal">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="226dp"
-        android:layout_height="226dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="5dp"
-        android:src="@drawable/projpic" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Registration"
+            android:textSize="22sp"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
 
-    <GridView
-        android:id="@+id/gridView_GV"
-        android:layout_width="226dp"
-        android:layout_height="226dp"
-        android:visibility="gone"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="5dp" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Username"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username_ET"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/buttonBT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Split"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:layout_below="@id/editPassword1"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="270dp"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:visibility="gone"
+            android:src="@drawable/demo_image"/>
+        <GridView
+            android:id="@+id/gridView_GV"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"/>
 
-        android:background="@color/colorPrimary"
-        android:onClick="splitImage" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonRegister"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            app:strokeColor="@color/colorPrimary"
+            android:text="Register "/>
 
-
-    <Button
-        android:id="@+id/buttonRegister"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/gridView_GV"
-        android:layout_marginTop="50dp"
-
-        android:text="Register " />
-
-
-
-</RelativeLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

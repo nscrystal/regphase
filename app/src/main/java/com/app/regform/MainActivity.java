@@ -14,7 +14,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button LogInButton, RegisterButton ;
-    EditText Email, Password ;
     String EmailHolder, PasswordHolder;
     Boolean EditTextEmptyHolder;
     SQLiteDatabase sqLiteDatabaseObj;
@@ -31,9 +30,6 @@ public class MainActivity extends AppCompatActivity {
         LogInButton = (Button)findViewById(R.id.buttonLogin);
 
         RegisterButton = (Button)findViewById(R.id.buttonRegister);
-
-        Email = (EditText)findViewById(R.id.editEmail);
-        Password = (EditText)findViewById(R.id.editPassword);
 
         sqLiteHelper = new SQLiteHelper(this);
 
@@ -106,10 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Checking EditText is empty or not.
     public void CheckEditTextStatus(){
-
-        // Getting value from All EditText and storing into String Variables.
-        EmailHolder = Email.getText().toString();
-        PasswordHolder = Password.getText().toString();
 
         // Checking EditText is empty or no using TextUtils.
         if( TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)){

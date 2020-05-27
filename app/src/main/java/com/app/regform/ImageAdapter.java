@@ -61,7 +61,9 @@ public class ImageAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(mContext,String.valueOf(position),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext,String.valueOf(position),Toast.LENGTH_SHORT).show();
+
+                ((RegisterActivity)mContext).selectedPassword(position);
 
             }
         });
