@@ -32,7 +32,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
 
         String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("+Table_Column_ID+" INTEGER PRIMARY KEY, "
-                +Table_Column_1_Name+" VARCHAR, "+Table_Column_3_Password+" INTEGER )";
+                +Table_Column_1_Name+" VARCHAR, "+Table_Column_3_Password+" VARCHAR )";
         database.execSQL(CREATE_TABLE);
 
     }
@@ -65,6 +65,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
         else
             return false;
+    }
+
+    public Cursor getUserDetails(String name){
+        Cursor cursor = null;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+ Table_Column_1_Name+" =?",new String[]{name});
+//        if (cursor.moveToFirst()){
+//            return cursor;
+//        }else
+//            return cursor;
+
+        return cursor;
     }
 
 

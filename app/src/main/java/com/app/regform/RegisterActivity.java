@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (exists)
                             Toast.makeText(getApplicationContext(),"Username already exist. Try another one",Toast.LENGTH_LONG).show();
                         else{
-                            Boolean added = userDB.addUser(nameHolder,3);
+                            Boolean added = userDB.addUser(nameHolder,passwordHolder);
                             if (added){
                                 Toast.makeText(getApplicationContext(),"User registration successful",Toast.LENGTH_LONG).show();
                                 startActivity(new Intent(RegisterActivity.this,MainActivity.class));
@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initGridView(ArrayList<Bitmap> chunkedImages) {
-        gridView.setAdapter(new ImageAdapter(this, chunkedImages));
+        gridView.setAdapter(new RegisterImageAdapter(this, chunkedImages));
         gridView.setNumColumns(cols);
         imageView.setVisibility(View.GONE);
         gridView.setVisibility(View.VISIBLE);
