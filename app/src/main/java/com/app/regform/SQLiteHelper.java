@@ -1,10 +1,12 @@
 package com.app.regform;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteDatabase;
 
-
-        import android.content.Context;
-        import android.database.sqlite.SQLiteOpenHelper;
-        import android.database.sqlite.SQLiteDatabase;
+import static android.icu.text.MessagePattern.ArgType.SELECT;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
 
@@ -29,7 +31,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        String CREATE_TABLE="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("+Table_Column_ID+" INTEGER PRIMARY KEY, "+Table_Column_1_Name+" VARCHAR, "+Table_Column_2_Email+" VARCHAR, "+Table_Column_3_Password+" VARCHAR)";
+        String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("+Table_Column_ID+" INTEGER PRIMARY KEY, "
+                +Table_Column_1_Name+" VARCHAR, "+Table_Column_3_Password+" VARCHAR )";
         database.execSQL(CREATE_TABLE);
 
     }
@@ -40,5 +43,42 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
+    public boolean addUser(String name,Integer password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Table_Column_1_Name,name);
+        contentValues.put(Table_Column_3_Password,password);
+        long result = db.insert(TABLE_NAME,null ,contentValues);
+        if(result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean checkUser(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+ Table_Column_1_Name+" =?",new String[]{name});
+        if (cursor.getCount() > 0)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public Cursor getUserDetails(String name){
+        Cursor cursor = null;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        cursor = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE "+ Table_Column_1_Name+" =?",new String[]{name});
+//        if (cursor.moveToFirst()){
+//            return cursor;
+//        }else
+//            return cursor;
+
+        return cursor;
+    }
+
 
 }
